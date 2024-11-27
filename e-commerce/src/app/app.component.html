@@ -1,3 +1,41 @@
-<div class="card flex justify-content-center">
-  <p-button label="Check" icon="pi pi-check"></p-button>
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/">bezKoder</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard" routerLinkActive="active">
+        <a class="nav-link" routerLink="/admin">Admin Board</a>
+      </li>
+      <li class="nav-item" *ngIf="showModeratorBoard" routerLinkActive="active">
+        <a class="nav-link" routerLink="/mod">Moderator Board</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn" routerLinkActive="active">
+        <a class="nav-link" routerLink="/user">User</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/auth/register">Sign Up</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/auth/login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
