@@ -13,21 +13,22 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { MenubarModule } from 'primeng/menubar'; // Import module Menubar
 import { ButtonModule } from 'primeng/button';   // Import module Button nếu sử dụng
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent, // Keep only AppComponent here
+    AppComponent,
+    NavbarComponent, // Keep only AppComponent here
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     HttpClientModule,
     ButtonModule,
     AuthModule,
-    HomeModule,
     ProfileModule,
-    MenubarModule,
-    BrowserAnimationsModule
+    HomeModule,
   ],
   providers: [
     UserService,

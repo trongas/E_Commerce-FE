@@ -1,21 +1,5 @@
-<div id="app">
-  <p-menubar [model]="menuItems" [styleClass]="'bg-dark text-light'">
-    <ng-template pTemplate="start">
-      <a class="navbar-brand text-light text-gray-800 decoration-transparent" routerLink="/home">Exclusive</a>
-    </ng-template>
-    <ng-template pTemplate="end">
-      <ng-container *ngIf="!isLoggedIn">
-        <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text" routerLink="/auth/register"></button>
-        <button pButton label="Login" icon="pi pi-sign-in" class="p-button-text" routerLink="/auth/login"></button>
-      </ng-container>
-      <ng-container *ngIf="isLoggedIn">
-        <span class="p-mr-3 text-light">{{ username }}</span>
-        <button pButton label="LogOut" icon="pi pi-sign-out" class="p-button-text" (click)="logout()"></button>
-      </ng-container>
-    </ng-template>
-  </p-menubar>
-
-  <div class="container p-mt-3">
-    <router-outlet></router-outlet>
-  </div>
+<app-navbar></app-navbar>
+<div >
+  <router-outlet></router-outlet>
 </div>
+<!-- <app-footer></app-footer> -->
