@@ -6,5 +6,7 @@ import { ModeratorRoutingModule } from './moderator-routing.module';
 @NgModule({
   declarations: [BoardModeratorComponent],
   imports: [CommonModule, ModeratorRoutingModule],
+  exports: [BoardModeratorComponent], 
+
 })
 export class ModeratorModule {}

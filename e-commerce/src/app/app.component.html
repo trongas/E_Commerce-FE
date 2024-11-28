@@ -1,41 +1,21 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">bezKoder</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard" routerLinkActive="active">
-        <a class="nav-link" routerLink="/admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard" routerLinkActive="active">
-        <a class="nav-link" routerLink="/mod">Moderator Board</a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn" routerLinkActive="active">
-        <a class="nav-link" routerLink="/user">User</a>
-      </li>
-    </ul>
+  <p-menubar [model]="menuItems" [styleClass]="'bg-dark text-light'">
+    <ng-template pTemplate="start">
+      <a class="navbar-brand text-light text-gray-800 decoration-transparent" routerLink="/home">Exclusive</a>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <ng-container *ngIf="!isLoggedIn">
+        <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text" routerLink="/auth/register"></button>
+        <button pButton label="Login" icon="pi pi-sign-in" class="p-button-text" routerLink="/auth/login"></button>
+      </ng-container>
+      <ng-container *ngIf="isLoggedIn">
+        <span class="p-mr-3 text-light">{{ username }}</span>
+        <button pButton label="LogOut" icon="pi pi-sign-out" class="p-button-text" (click)="logout()"></button>
+      </ng-container>
+    </ng-template>
+  </p-menubar>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/auth/register">Sign Up</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/auth/login">Login</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="container">
+  <div class="container p-mt-3">
     <router-outlet></router-outlet>
   </div>
 </div>

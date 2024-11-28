@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
@@ -9,13 +9,14 @@ import { EventBusService } from './_shared/event-bus.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
 
+  menuItems: any[] = [];
   eventBusSub?: Subscription;
 
   constructor(
@@ -37,6 +38,13 @@ export class AppComponent {
       this.username = user.username;
     }
 
+    this.menuItems = [
+      { label: 'Home', icon: 'pi pi-home', routerLink: '/home' },
+      ...(this.showAdminBoard ? [{ label: 'Admin Board', icon: 'pi pi-cog', routerLink: '/admin' }] : []),
+      ...(this.showModeratorBoard ? [{ label: 'Moderator Board', icon: 'pi pi-user', routerLink: '/mod' }] : []),
+      ...(this.isLoggedIn ? [{ label: 'User', icon: 'pi pi-user', routerLink: '/user' }] : [])
+    ];
+
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
@@ -47,7 +55,7 @@ export class AppComponent {
       next: res => {
         console.log(res);
         this.storageService.clean();
-        
+
         window.location.reload();
       },
       error: err => {
