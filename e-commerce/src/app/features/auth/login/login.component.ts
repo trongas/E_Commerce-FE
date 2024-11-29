@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth.service';
 import { StorageService } from 'src/app/_services/storage.service';
 
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(private authService: AuthService, private storageService: StorageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -38,10 +39,12 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         this.reloadPage();
+        this.toastr.success('Login Success!')
       },
       error: err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.toastr.error('Please check username or password is correct !')
       }
     });
   }

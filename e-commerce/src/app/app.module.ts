@@ -14,11 +14,15 @@ import { MenubarModule } from 'primeng/menubar'; // Import module Menubar
 import { ButtonModule } from 'primeng/button';   // Import module Button nếu sử dụng
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
+import { FooterComponent } from './shared/layouts/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
+  
   declarations: [
     AppComponent,
-    NavbarComponent, // Keep only AppComponent here
+    NavbarComponent,
+    FooterComponent, // Keep only AppComponent here
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,13 @@ import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
     AuthModule,
     ProfileModule,
     HomeModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      timeOut: 5000,
+      closeButton: true,
+      progressBar: true,
+    }),
   ],
   providers: [
     UserService,
