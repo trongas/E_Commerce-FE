@@ -1,21 +1,110 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
-    </header>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-    <strong>Roles:</strong>
-    <ul>
-      <li *ngFor="let role of currentUser.roles">
-        {{ role }}
-      </li>
-    </ul>
+<ng-template #loggedOut>
+  <div class="flex items-center justify-center h-screen">
+    <p class="text-lg text-gray-500">Please log in to manage your account.</p>
   </div>
-  
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
+</ng-template>
+
+<div class="p-14 mx-auto py-10 px-14" *ngIf="currentUser; else loggedOut">
+  <div class="flex justify-between">
+    <p-breadcrumb [model]="breadcrumbItems" class="border-none"></p-breadcrumb>
+    <p class="justify-end">Welcome! <strong class="text-red-500">{{ currentUser.username }}!</strong> </p>
+
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Sidebar -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Manage My Account</h3>
+      <ul class="space-y-4 list-none text-sm ">
+        <li>
+          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent  focus:text-red-500">
+            My Profile
+          </a>
+        </li>
+        <li>
+          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+            Address Book
+          </a>
+        </li>
+        <li>
+          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+            My Payment Options
+          </a>
+        </li>
+      </ul>
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">My Order</h3>
+      <ul class="space-y-4 list-none text-sm ">
+
+        <li>
+          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+            My Returns
+          </a>
+        </li>
+        <li>
+          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+            My Cancellations
+          </a>
+        </li>
+      </ul>
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">My Wishlist</h3>
+
+    </div>
+
+    <!-- Form Section -->
+    <div class="lg:col-span-2 bg-white shadow-lg rounded-lg p-8">
+      <h3 class="text-xl font-semibold text-gray-800 mb-6">Edit Your Profile</h3>
+      <p-card>
+        <form class="space-y-6">
+          <!-- Name Fields -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="firstName" class="block text-sm font-normal text-gray-700">First Name</label>
+              <input pInputText id="firstName" [(ngModel)]="firstName" name="firstName" class="w-full" />
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-normal text-gray-700">Last Name</label>
+              <input pInputText id="lastName" [(ngModel)]="lastName" name="lastName" class="w-full" />
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div>
+            <label for="email" class="block text-sm font-normal text-gray-700">Email</label>
+            <input pInputText type="email" id="email" [(ngModel)]="currentUser.email" name="email" class="w-full" />
+          </div>
+
+          <!-- Address Field -->
+          <div>
+            <label for="address" class="block text-sm font-normal text-gray-700">Address</label>
+            <input pInputText id="address" [(ngModel)]="currentUser.address" name="address" class="w-full" />
+          </div>
+
+          <!-- Password Changes Section -->
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Password Changes</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="currentPassword" class="block text-sm font-normal text-gray-700">Current Password</label>
+              <input pPassword id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" class="w-full"
+                [feedback]="false" />
+            </div>
+            <div>
+              <label for="newPassword" class="block text-sm font-normal text-gray-700">New Password</label>
+              <input pPassword id="newPassword" [(ngModel)]="newPassword" name="newPassword" class="w-full"
+                [feedback]="false" />
+            </div>
+            <div>
+              <label for="confirmPassword" class="block text-sm font-normal text-gray-700">Confirm New Password</label>
+              <input pPassword id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" class="w-full"
+                [feedback]="false" />
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-4">
+            <button pButton type="button" label="Cancel" class="p-button-outlined p-button-secondary"></button>
+            <button pButton type="submit" label="Save Changes" class="bg-red-500"></button>
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>

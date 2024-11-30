@@ -29,8 +29,9 @@ export class NavbarComponent {
   }
 
   toggleDropdownAccount(): void {
-    this.isDropdownVisibleAccount = !this.isDropdownVisibleAccount;
-  }
+    if (this.storageService.isLoggedIn()) {
+      this.isDropdownVisibleAccount = !this.isDropdownVisibleAccount;
+    }  }
 
   closeDropdown() {
     this.isDropdownOpen = false;
@@ -52,5 +53,10 @@ export class NavbarComponent {
         console.log(err);
       },
     });
+    this.isDropdownVisibleAccount = false;
+
+  }
+  get isLoggedIn(): boolean {
+    return this.storageService.isLoggedIn();
   }
 }

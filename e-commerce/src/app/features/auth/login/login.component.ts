@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth.service';
 import { StorageService } from 'src/app/_services/storage.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   form: any = {
     username: null,
-    password: null
+    password: null,
   };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService, private toastr: ToastrService) { }
+  constructor(
+    private authService: AuthService,
+    private storageService: StorageService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -32,24 +37,21 @@ export class LoginComponent implements OnInit {
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe({
-      next: data => {
+      next: (data) => {
         this.storageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-        this.toastr.success('Login Success!')
+        this.router.navigate(['/home']);
+        this.toastr.success('Login Success!');
       },
-      error: err => {
+      error: (err) => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
-        this.toastr.error('Please check username or password is correct !')
-      }
+        this.toastr.error('Please check username or password is correct !');
+      },
     });
   }
 
-  reloadPage(): void {
-    window.location.reload();
-  }
 }
