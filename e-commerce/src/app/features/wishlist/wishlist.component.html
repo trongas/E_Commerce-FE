@@ -1,0 +1,27 @@
+<div class="p-4 bg-white rounded-lg shadow-lg max-w-3xl mx-auto">
+    <h2 class="text-xl font-bold mb-4">My Wishlist</h2>
+  
+    <div *ngIf="wishlistItems.length > 0; else emptyState">
+      <div *ngFor="let item of wishlistItems" class="flex items-center gap-4 mb-4">
+        <!-- Product Image -->
+        <img [src]="item.image" alt="{{ item.name }}" class="w-16 h-16 object-cover rounded-md bg-gray-100" />
+  
+        <!-- Product Details -->
+        <div class="flex-grow">
+          <h3 class="font-semibold text-sm">{{ item.name }}</h3>
+          <p class="text-gray-500 text-xs">{{ item.description }}</p>
+        </div>
+  
+        <!-- Remove Button -->
+        <button class="text-red-500" (click)="removeFromWishlist(item)">
+          <i class="pi pi-trash"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Empty State -->
+    <ng-template #emptyState>
+      <p class="text-gray-500 text-center">Your wishlist is empty.</p>
+    </ng-template>
+  </div>
+  

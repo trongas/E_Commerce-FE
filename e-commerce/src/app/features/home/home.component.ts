@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  visibleSidebar: boolean = false;
+
 
   languages = ['English', 'Français', 'Español', '中文', 'Deutsch'];
   selectedLanguage: string = 'English';
@@ -80,7 +82,9 @@ export class HomeComponent implements OnInit {
   }
   // Trạng thái mở/đóng dropdown
   isDropdownOpen: boolean = false;
-
+    toggleSidebar() {
+      this.visibleSidebar = !this.visibleSidebar;
+    }
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -107,4 +111,5 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+
 }

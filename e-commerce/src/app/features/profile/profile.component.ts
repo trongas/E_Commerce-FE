@@ -14,12 +14,6 @@ export class ProfileComponent implements OnInit {
   newPassword!: string; // For storing new password input
   confirmPassword!: string; // For storing password confirmation
 
-  // Breadcrumb items for navigation
-  breadcrumbItems = [
-    { label: 'Profile', url: '/' },
-    { label: 'Account', url: '/account' },
-    { label: 'Edit Profile', url: '/account/edit-profile' }
-  ];
 
   constructor(private storageService: StorageService) { }
 

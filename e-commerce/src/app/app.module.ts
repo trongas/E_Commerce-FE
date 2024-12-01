@@ -10,19 +10,21 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './_services/user.service';
 import { StorageService } from './_services/storage.service';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
-import { MenubarModule } from 'primeng/menubar'; // Import module Menubar
 import { ButtonModule } from 'primeng/button';   // Import module Button nếu sử dụng
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
 import { FooterComponent } from './shared/layouts/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ProductDetailComponent } from './features/product-detail/product-detail.component';
+import { ProductDetailModule } from './features/product-detail/product-detail.module';
 
 @NgModule({
   
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent, // Keep only AppComponent here
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     AuthModule,
     ProfileModule,
     HomeModule,
+    ProductDetailModule,
+
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       preventDuplicates: true,

@@ -14,6 +14,9 @@ module.exports = {
         xl: "1280px", // Desktop tiêu chuẩn
         "2xl": "1536px", // Màn hình siêu rộng
       },
+      lineHeight: {
+        '0.25': '0.25', // custom line-height of 0.25
+      },
     },
   },
   corePlugins: {

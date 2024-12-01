@@ -1,3 +1,59 @@
-<div class="h-96 bg-slate-900">
+<div class="px-14">
+  <div class="flex ">
+    <!-- Sidebar -->
+    <div class="w-1/4 p-4">
+      <ul class="space-y-4">
+        <!-- Women's Fashion with nested categories -->
+        <li class="group cursor-pointer  font-normal text-sm list-none">
+          <span class="flex justify-between items-center hover:text-red-500">
+            <span>Woman's Fashion</span>
+            <i class="pi pi-chevron-right group-hover:rotate-90 transition-transform"></i>
+          </span>
+          <!-- Nested Categories under Women's Fashion -->
+          <ul class="pl-4 space-y-2 py-2 hidden group-hover:block list-none">
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Dresses</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Tops</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Shoes</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Accessories</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Jewelry</li>
+          </ul>
+        </li>
 
-</div>
+        <!-- Men's Fashion with nested categories -->
+        <li class="group cursor-pointer font-normal text-sm list-none">
+          <span class="flex justify-between items-center hover:text-red-500 ">
+            <span>Men's Fashion</span>
+            <i class="pi pi-chevron-right group-hover:rotate-90 transition-transform"></i>
+          </span>
+          <!-- Nested Categories under Men's Fashion -->
+          <ul class="pl-4 space-y-2 py-2 hidden group-hover:block list-none">
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Shirts</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Jeans</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Jackets</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Shoes</li>
+            <li class="cursor-pointer hover:text-red-600 font-normal text-sm">Accessories</li>
+          </ul>
+        </li>
+
+        <!-- Other categories -->
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Electronics</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Home & Lifestyle</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Medicine</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Sports & Outdoor</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Baby's & Toys</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Groceries & Pets</li>
+        <li class="cursor-pointer list-none hover:text-red-500 font-normal text-sm">Health & Beauty</li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-3/4 p-4">
+      <app-carousel></app-carousel>
+    </div>
+    </div>
+
+    <div class="pt-28">
+      <app-flash-sales></app-flash-sales>
+    </div>
+
+  </div>

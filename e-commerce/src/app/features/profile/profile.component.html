@@ -4,29 +4,32 @@
   </div>
 </ng-template>
 
-<div class="p-14 mx-auto py-10 px-14" *ngIf="currentUser; else loggedOut">
-  <div class="flex justify-between">
-    <p-breadcrumb [model]="breadcrumbItems" class="border-none"></p-breadcrumb>
-    <p class="justify-end">Welcome! <strong class="text-red-500">{{ currentUser.username }}!</strong> </p>
-
+<div class="p-4 md:p-8 lg:p-14 mx-auto" *ngIf="currentUser; else loggedOut">
+  <div class="flex flex-col sm:flex-row justify-end items-center mb-6">
+    <p class="text-sm sm:text-base">
+      Welcome! <strong class="text-red-500">{{ currentUser.username }}!</strong>
+    </p>
   </div>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
     <!-- Sidebar -->
     <div class="bg-white shadow-lg rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">Manage My Account</h3>
+      <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Manage My Account</h3>
       <ul class="space-y-4 list-none text-sm ">
         <li>
-          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent  focus:text-red-500">
+          <a pRipple href="#"
+            class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent  focus:text-red-500">
             My Profile
           </a>
         </li>
         <li>
-          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+          <a pRipple href="#"
+            class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
             Address Book
           </a>
         </li>
         <li>
-          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+          <a pRipple href="#"
+            class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
             My Payment Options
           </a>
         </li>
@@ -35,12 +38,14 @@
       <ul class="space-y-4 list-none text-sm ">
 
         <li>
-          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+          <a pRipple href="#"
+            class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
             My Returns
           </a>
         </li>
         <li>
-          <a pRipple href="#" class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
+          <a pRipple href="#"
+            class="block text-gray-700 hover:text-primary-500 font-normal decoration-transparent focus:text-red-500 ">
             My Cancellations
           </a>
         </li>
@@ -50,58 +55,60 @@
     </div>
 
     <!-- Form Section -->
-    <div class="lg:col-span-2 bg-white shadow-lg rounded-lg p-8">
-      <h3 class="text-xl font-semibold text-gray-800 mb-6">Edit Your Profile</h3>
+    <div class="lg:col-span-2 bg-white shadow-lg rounded-lg p-4 md:p-8">
+      <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6">Edit Your Profile</h3>
       <p-card>
-        <form class="space-y-6">
+        <form class="space-y-4 sm:space-y-6">
           <!-- Name Fields -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
             <div>
-              <label for="firstName" class="block text-sm font-normal text-gray-700">First Name</label>
-              <input pInputText id="firstName" [(ngModel)]="firstName" name="firstName" class="w-full" />
+              <label for="firstName" class="block text-xs sm:text-sm font-normal text-gray-700">First Name</label>
+              <input pInputText id="firstName" [(ngModel)]="firstName" name="firstName"
+                class="w-full text-xs sm:text-base" />
             </div>
             <div>
-              <label for="lastName" class="block text-sm font-normal text-gray-700">Last Name</label>
-              <input pInputText id="lastName" [(ngModel)]="lastName" name="lastName" class="w-full" />
+              <label for="lastName" class="block text-xs sm:text-sm font-normal text-gray-700">Last Name</label>
+              <input pInputText id="lastName" [(ngModel)]="lastName" name="lastName" class="w-full text-xs sm:text-base" />
             </div>
           </div>
 
           <!-- Email Field -->
           <div>
-            <label for="email" class="block text-sm font-normal text-gray-700">Email</label>
-            <input pInputText type="email" id="email" [(ngModel)]="currentUser.email" name="email" class="w-full" />
+            <label for="email" class="block text-xs sm:text-sm font-normal text-gray-700">Email</label>
+            <input pInputText type="email" id="email" [(ngModel)]="currentUser.email" name="email" class="w-full text-xs sm:text-base" />
           </div>
 
           <!-- Address Field -->
           <div>
-            <label for="address" class="block text-sm font-normal text-gray-700">Address</label>
-            <input pInputText id="address" [(ngModel)]="currentUser.address" name="address" class="w-full" />
+            <label for="address" class="block text-xs sm:text-sm font-normal text-gray-700">Address</label>
+            <input pInputText id="address" [(ngModel)]="currentUser.address" name="address" class="w-full text-xs sm:text-base" />
           </div>
 
           <!-- Password Changes Section -->
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Password Changes</h3>
           <div class="grid grid-cols-1 gap-4">
             <div>
-              <label for="currentPassword" class="block text-sm font-normal text-gray-700">Current Password</label>
-              <input pPassword id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" class="w-full"
+              <label for="currentPassword" class="block text-xs sm:text-sm font-normal text-gray-700">Current Password</label>
+              <input pPassword id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" class="w-full text-xs sm:text-base"
                 [feedback]="false" />
             </div>
             <div>
-              <label for="newPassword" class="block text-sm font-normal text-gray-700">New Password</label>
-              <input pPassword id="newPassword" [(ngModel)]="newPassword" name="newPassword" class="w-full"
+              <label for="newPassword" class="block text-xs sm:text-sm font-normal text-gray-700">New Password</label>
+              <input pPassword id="newPassword" [(ngModel)]="newPassword" name="newPassword" class="w-full text-xs sm:text-base"
                 [feedback]="false" />
             </div>
             <div>
-              <label for="confirmPassword" class="block text-sm font-normal text-gray-700">Confirm New Password</label>
-              <input pPassword id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" class="w-full"
+              <label for="confirmPassword" class="block text-xs sm:text-sm font-normal text-gray-700">Confirm New Password</label>
+              <input pPassword id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" class="w-full text-xs sm:text-base"
                 [feedback]="false" />
             </div>
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex justify-end space-x-4">
-            <button pButton type="button" label="Cancel" class="p-button-outlined p-button-secondary"></button>
-            <button pButton type="submit" label="Save Changes" class="bg-red-500"></button>
+          <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
+            <button pButton type="button" label="Cancel" routerLink="/home"
+              class="p-button-outlined p-button-secondary text-xs sm:text-base"></button>
+            <button pButton type="submit" label="Save Changes" class="bg-red-500 text-xs sm:text-base"></button>
           </div>
         </form>
       </p-card>

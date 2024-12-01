@@ -13,6 +13,13 @@ const routes: Routes = [
       import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'product-details/:id',
+    loadChildren: () =>
+      import('./features/product-detail/product-detail.module').then(
+        (m) => m.ProductDetailModule
+      ),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),

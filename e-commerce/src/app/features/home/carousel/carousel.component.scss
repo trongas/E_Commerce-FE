@@ -1,0 +1,23 @@
+.carousel-container {
+    @apply w-full mx-auto;
+  
+    .custom-carousel {
+      @apply w-full h-auto;
+  
+      /* Styling the pagination dots */
+      .p-carousel-indicators {
+        @apply flex justify-center gap-2 mt-4;
+      }
+  
+      /* Circular dots */
+      .p-carousel-indicator {
+        @apply w-3 h-3 rounded-full bg-gray-400 cursor-pointer transition;
+      }
+  
+      /* Active dot */
+      .p-carousel-indicator.p-highlight {
+        @apply bg-red-600;
+      }
+    }
+  }
+  

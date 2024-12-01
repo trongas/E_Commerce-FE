@@ -1,0 +1,30 @@
+/* Add your custom styles for the product detail page */
+.product-detail {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .product-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .product-info {
+    margin-left: 20px;
+  }
+  
+  .product-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    font-size: 1.5rem;
+    color: #ff0000;
+  }
+  
+  .product-description {
+    color: #555;
+  }
+  
