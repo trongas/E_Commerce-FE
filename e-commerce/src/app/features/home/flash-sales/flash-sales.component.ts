@@ -11,6 +11,7 @@ import { WishlistService } from 'src/app/_services/wishlist/wishlist.service';
 export class FlashSalesComponent implements OnInit {
   selectedProduct: any;
   isModalOpen = false;
+  wishlist: any[] = [];
 
   timer = {
     days: 0,
@@ -147,6 +148,7 @@ export class FlashSalesComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.startTimer();
+    this.loadWishlist();
   }
 
   startTimer() {
@@ -178,7 +180,13 @@ export class FlashSalesComponent implements OnInit {
     // Điều hướng sang ProductDetailComponent với ID sản phẩm
     this.router.navigate(['/product-details', product.id]);
   }
-  
+  loadWishlist(): void {
+    // Load the wishlist for the user from the WishlistService
+    this.wishlistService.getWishlist().subscribe((wishlist) => {
+      this.wishlist = wishlist;
+    });
+  }
+
 
   closeModal() {
     this.isModalOpen = false;
@@ -186,15 +194,15 @@ export class FlashSalesComponent implements OnInit {
     console.log('Modal closed.');
   }
 
-  addToWishlist(product: any) {
-    if (!product) {
-      this.toastr.error('Unable to add to wishlist.');
-      return;
+  addToWishlist(product: any): void {
+    const exists = this.wishlist.some(item => item.id === product.id);
+    if (!exists) {
+      this.wishlist.push(product);
+      alert(`${product.name} has been added to your wishlist!`);
+      this.router.navigate(['/wishlist', product.id]);
+    } else {
+      alert(`${product.name} is already in your wishlist.`);
     }
-  
-    // Example of adding to a wishlist (could be a service call)
-    console.log('Added to wishlist:', product);
-    this.toastr.success(`${product.name} added to your wishlist!`);
   }
   
 
@@ -203,4 +211,12 @@ export class FlashSalesComponent implements OnInit {
     // Modal implementation (could use a library like ngx-bootstrap, Angular Material, or custom modal)
     console.log('Opening modal for:', this.selectedProduct);
   }
+
+  responsiveNumVisible() {
+    const width = window.innerWidth;
+    if (width < 640) return 1; // Small screens
+    if (width < 1024) return 3; // Medium screens
+    return 5; // Large screens
+}
+
 }

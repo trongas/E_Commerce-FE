@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,24 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent {
-  wishlistItems = [
-    // Sample items (replace with data from a service or API)
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'This is a sample product',
-      image: 'https://via.placeholder.com/150',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'This is another sample product',
-      image: 'https://via.placeholder.com/150',
-    },
-  ];
+    @Input() wishlist: any[] = [];
 
-  removeFromWishlist(item: any) {
-    this.wishlistItems = this.wishlistItems.filter(i => i.id !== item.id);
-    console.log('Removed from wishlist:', item);
-  }
+    removeFromWishlist(product: any): void {
+      const index = this.wishlist.findIndex(item => item.id === product.id);
+      if (index > -1) {
+        this.wishlist.splice(index, 1);
+      }
+    }
 }

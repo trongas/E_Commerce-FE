@@ -10,9 +10,14 @@ import { SidebarModule } from 'primeng/sidebar';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FlashSalesComponent } from './flash-sales/flash-sales.component';
 import { RatingModule } from 'primeng/rating';
+import { CategoryGridComponent } from './category-grid/category-grid.component';
+import { BestSellerComponent } from './best-seller/best-seller.component';
+import { MusicExperienceComponent } from './music-experience/music-experience.component';
+import { OurProductsComponent } from './our-products/our-products.component';
+import { FeaturedArrivalComponent } from './featured-arrival/featured-arrival.component';
 
 @NgModule({
-  declarations: [HomeComponent, CarouselComponent, FlashSalesComponent],
+  declarations: [HomeComponent, CarouselComponent, FlashSalesComponent, CategoryGridComponent, BestSellerComponent, MusicExperienceComponent, OurProductsComponent, FeaturedArrivalComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

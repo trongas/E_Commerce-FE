@@ -14,7 +14,8 @@ export class NavbarComponent {
   isDropdownOpen = false;
   isSmallScreen = false;
   isDropdownVisibleAccount = false;
-
+  wishlistCount = 0; 
+  
   constructor(
     private authService: AuthService,
     private storageService: StorageService

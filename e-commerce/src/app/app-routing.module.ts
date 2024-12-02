@@ -20,6 +20,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'wishlist/:id',
+    loadChildren: () =>
+      import('./features/wishlist/wishlist-routing.module').then(
+        (m) => m.WishlistRoutingModule
+      ),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
@@ -59,7 +66,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top', // Cuộn lên đầu trang khi điều hướng
+      anchorScrolling: 'enabled', // Tùy chọn: Kích hoạt cuộn theo anchor (#id)
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

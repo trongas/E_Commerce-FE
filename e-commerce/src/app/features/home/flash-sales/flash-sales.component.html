@@ -1,66 +1,64 @@
-<div class="px-14">
+<div class="px-4 md:px-8 lg:px-14">
     <!-- Flash Sales Title -->
     <div class="text-left">
         <div class="flex space-x-2 items-center">
-            <p class="w-4 h-7 rounded-md bg-red-500"></p>
-            <p class="text-red-500 font-bold uppercase">Today's</p>
+            <p class="w-3 h-5 md:w-4 md:h-7 rounded-md bg-red-500"></p>
+            <p class="text-red-500 font-bold uppercase text-sm md:text-base">Today's</p>
         </div>
 
-        <div class="flex items-center">
-            <h2 class="text-xl font-semibold line-clamp-1">Flash Sales</h2>
+        <div class="flex flex-col md:flex-row items-center md:space-x-4">
+            <h2 class="text-lg md:text-xl font-semibold line-clamp-1">Flash Sales</h2>
             <!-- Countdown Timer -->
-            <div class="flex gap-4 text-sm font-bold px-10">
+            <div class="flex flex-wrap gap-2 md:gap-4 text-sm font-bold px-4 md:px-10">
                 <div class="text-center">
                     <p class="text-xs">Days</p>
-                    <span class="text-red-500 text-2xl">{{ timer.days }}</span>
+                    <span class="text-red-500 text-lg md:text-2xl">{{ timer.days }}</span>
                 </div>
                 <div class="text-center">
                     <p class="text-xs">Hours</p>
-                    <span class="text-red-500 text-2xl">{{ timer.hours }}</span>
+                    <span class="text-red-500 text-lg md:text-2xl">{{ timer.hours }}</span>
                 </div>
                 <div class="text-center">
                     <p class="text-xs">Minutes</p>
-                    <span class="text-red-500 text-2xl">{{ timer.minutes }}</span>
+                    <span class="text-red-500 text-lg md:text-2xl">{{ timer.minutes }}</span>
                 </div>
                 <div class="text-center">
                     <p class="text-xs">Seconds</p>
-                    <span class="text-red-500 text-2xl">{{ timer.seconds }}</span>
+                    <span class="text-red-500 text-lg md:text-2xl">{{ timer.seconds }}</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Product List -->
-    <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" class="my-6" [showIndicators]="false"
-        [showNavigators]="false">
+    <p-carousel [value]="products" [numVisible]="responsiveNumVisible()" [numScroll]="1" class="my-6"
+        [showIndicators]="false" [showNavigators]="false" [autoplayInterval]="3000">
         <ng-template pTemplate="item" let-product>
-            <div class="p-4 bg-white relative group hover:shadow-2xl transition-shadow duration-200">
+            <div
+                class="p-2 md:p-4 bg-white relative group hover:shadow-2xl transition-shadow duration-200 w-full ">
                 <!-- Discount Badge -->
                 <div class="relative">
-                    <span class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                    <span
+                        class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
                         -{{ product.discount }}%
                     </span>
                     <img [src]="product.image" alt="{{ product.name }}"
-                        class="w-full h-48 object-cover rounded-lg bg-gray-200" />
+                        class="w-full h-32 md:h-48 object-cover rounded-lg bg-gray-200" />
 
-                    <!-- Icons (Heart & Eye) -->
                     <!-- Icons (Heart & Eye) -->
                     <div
                         class="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <!-- View Details Icon -->
                         <i class="pi pi-eye cursor-pointer text-black hover:text-gray-700"
                             (click)="navigateToProductDetails(product)" title="View Details">
                         </i>
-                        <!-- Add to Wishlist Icon -->
                         <i class="pi pi-heart cursor-pointer text-red-500 hover:text-red-700"
                             (click)="addToWishlist(product)" title="Add to Wishlist">
                         </i>
                     </div>
-
                 </div>
 
                 <!-- Product Info -->
-                <h3 class="font-semibold text-sm mt-2 w-full text-left line-clamp-1 overflow-hidden text-ellipsis ">
+                <h3 class="font-semibold text-sm mt-2 text-left line-clamp-1 overflow-hidden">
                     {{ product.name }}
                 </h3>
                 <div class="flex items-center py-1">
@@ -70,10 +68,10 @@
 
                 <p-rating [stars]="5" [readonly]="true" [cancel]="false" [(ngModel)]="product.rating"
                     class="scale-75"></p-rating>
-                <span class="text-gray-500 text-sm px-2 items-center">({{ product.totalRatings }})</span>
+                <span class="text-gray-500 text-sm px-2">({{ product.totalRatings }})</span>
 
                 <div
-                    class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-4 w-full">
+                    class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-4">
                     <button class="bg-black text-white px-4 py-2 rounded shadow w-full">Add to cart</button>
                 </div>
             </div>
@@ -81,9 +79,7 @@
     </p-carousel>
 
     <!-- View All Products Button -->
-    <div class="flex justify-center ">
+    <div class="flex justify-center">
         <a class="bg-red-500 text-white px-6 py-3 rounded-sm font-normal">View All Products</a>
     </div>
-   
-        <div class="h-96"></div>
-    </div>
+</div>
