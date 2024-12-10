@@ -19,7 +19,7 @@ export class FlashSalesComponent implements OnInit {
     minutes: 0,
     seconds: 0,
   };
-  endTime = new Date('2024-12-02T23:59:59');
+  endTime = new Date('2024-12-18T23:59:59');
   products = [
     {
       id: 1,

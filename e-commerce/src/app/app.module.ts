@@ -10,25 +10,26 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './_services/user.service';
 import { StorageService } from './_services/storage.service';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
-import { ButtonModule } from 'primeng/button';   // Import module Button nếu sử dụng
+import { ButtonModule } from 'primeng/button'; // Import module Button nếu sử dụng
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
 import { FooterComponent } from './shared/layouts/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ProductDetailComponent } from './features/product-detail/product-detail.component';
 import { ProductDetailModule } from './features/product-detail/product-detail.module';
+import { JwtModule } from '@auth0/angular-jwt';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { BreadcrumbComponent } from './shared/component/breadcrumb/breadcrumb.component';
+import { ScrollToTopComponent } from './shared/component/scroll-to-top/scroll-to-top.component';
+
+export function tokenGetter(): string | null {
+  return localStorage.getItem('token'); // Replace with your token storage key
+}
 
 @NgModule({
-  
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-
-  ],
+  declarations: [AppComponent, NavbarComponent, FooterComponent, BreadcrumbComponent, ScrollToTopComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ButtonModule,
@@ -36,7 +37,7 @@ import { ProductDetailModule } from './features/product-detail/product-detail.mo
     ProfileModule,
     HomeModule,
     ProductDetailModule,
-
+    BreadcrumbModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       preventDuplicates: true,
@@ -44,15 +45,23 @@ import { ProductDetailModule } from './features/product-detail/product-detail.mo
       closeButton: true,
       progressBar: true,
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['localhost:8080/api/auth'],
+      },
+    }),
   ],
   providers: [
     UserService,
     StorageService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor, // Use the interceptor
+      useClass: AuthInterceptor,
       multi: true, // Allow multiple interceptors
     },
-  ],  bootstrap: [AppComponent],
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

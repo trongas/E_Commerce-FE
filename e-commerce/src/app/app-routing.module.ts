@@ -3,14 +3,29 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full', // Điều hướng mặc định
-  },
-  {
     path: 'home',
     loadChildren: () =>
       import('./features/home/home.module').then((m) => m.HomeModule),
+    pathMatch: 'full', // Default route
+    data: { breadcrumb: 'Home' },
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./features/contact/contact.module').then((m) => m.ContactModule),
+      data: { breadcrumb: 'Contact' },
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./features/about/about.module').then((m) => m.AboutModule),
+      data: { breadcrumb: 'About' },
+  },
+  {
+    path: 'product',
+    loadChildren: () =>
+      import('./features/product/product.module').then((m) => m.ProductModule),
+      data: { breadcrumb: 'Product' },
   },
   {
     path: 'product-details/:id',
@@ -18,6 +33,7 @@ const routes: Routes = [
       import('./features/product-detail/product-detail.module').then(
         (m) => m.ProductDetailModule
       ),
+      data: { breadcrumb: 'Product Details' },
   },
   {
     path: 'wishlist/:id',
@@ -25,6 +41,7 @@ const routes: Routes = [
       import('./features/wishlist/wishlist-routing.module').then(
         (m) => m.WishlistRoutingModule
       ),
+      data: { breadcrumb: 'Wishlist' },
   },
   {
     path: 'auth',
@@ -35,6 +52,7 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () =>
       import('./features/profile/profile.module').then((m) => m.ProfileModule),
+      data: { breadcrumb: 'Profile' },
   },
 
   {
@@ -57,10 +75,6 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home', // Điều hướng khi route không tồn tại
-  },
-  {
-    path: '',
-    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];
@@ -68,8 +82,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top', // Cuộn lên đầu trang khi điều hướng
-      anchorScrolling: 'enabled', // Tùy chọn: Kích hoạt cuộn theo anchor (#id)
+      scrollPositionRestoration: 'top',
+      anchorScrolling: 'enabled',
     }),
   ],
   exports: [RouterModule],

@@ -1,0 +1,80 @@
+<div class="container mx-auto px-14">
+
+  <h2 class="text-2xl font-bold mb-4">Product List</h2>
+
+  <!-- Search Section -->
+  <div class="flex items-center gap-2 mb-4">
+    <input 
+      type="text" 
+      [(ngModel)]="name" 
+      placeholder="Search by Name" 
+      class="p-inputtext p-component w-full md:w-1/5 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+    <button 
+      (click)="onSearch()" 
+      class="p-button p-component bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+      Search
+    </button>
+  </div>
+
+  <!-- Product Cards Section -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div *ngFor="let product of products" class="bg-white border border-gray-200 rounded-lg shadow p-4 relative">
+      <!-- Discount Badge -->
+      <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+        <!-- {{ product.discount }}% --> 40% 
+      </div>
+
+      <!-- Wishlist and View Buttons -->
+      <div class="absolute top-1 -right-1 grid ">
+        <button class="p-button p-component p-button-text p-button-rounded">
+          <i class="pi pi-heart text-red-500"></i>
+        </button>
+        <button class="p-button p-component p-button-text p-button-rounded">
+          <i class="pi pi-eye text-gray-500"></i>
+        </button>
+      </div>
+
+      <!-- Product Image -->
+      <img 
+        *ngIf="product.pictures && product.pictures.length > 0" 
+        [src]="product.pictures[0].pictureUrl" 
+        alt="Product Image" 
+        class="w-full h-48 object-contain mb-4">
+
+      <!-- Product Details -->
+      <h3 class="text-lg font-bold mb-2">{{ product.productName }}</h3>
+      <p class="text-gray-600 text-sm mb-2">{{ product.productDesc }}</p>
+
+      <!-- Pricing and Stock -->
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-red-500 font-bold text-xl">${{ product.unitPrice }}</span>
+          <!-- <span *ngIf="product.originalPrice" class="line-through text-gray-500 text-sm ml-2">${{ product.originalPrice }}</span> -->
+        </div>
+        <span class="text-gray-500 text-sm">Stock: {{ product.unitsInStock }}</span>
+      </div>
+
+      <!-- Add to Cart Button -->
+      <button 
+        class="p-button p-component justify-center w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">
+        Add To Cart
+      </button>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="flex justify-center items-center mt-6 gap-2">
+    <button 
+      (click)="onPageChange(pageNumber - 1)" 
+      [disabled]="pageNumber === 0" 
+      class="p-button p-component bg-gray-300 text-black px-3 py-2 rounded-md hover:bg-gray-400 disabled:opacity-50">
+      Previous
+    </button>
+    <button 
+      (click)="onPageChange(pageNumber + 1)" 
+      class="p-button p-component bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
+      Next
+    </button>
+  </div>
+</div>
+

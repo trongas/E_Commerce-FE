@@ -9,22 +9,18 @@ import { Observable } from 'rxjs';
 import { StorageService } from '../_services/storage.service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class CustomInterceptor implements HttpInterceptor {
+  
   constructor(private storageService: StorageService) {}
+  token = this.storageService.getToken();
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token'); // Retrieve the token
-    if (token) {
-      // Clone the request and attach the token
-      const cloned = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return next.handle(cloned);
-    }
-    return next.handle(req);
+    const modifiedReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${this.token}`),
+    });
+    return next.handle(modifiedReq);
   }
 }

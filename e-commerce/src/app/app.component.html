@@ -1,5 +1,9 @@
 <app-navbar *ngIf="showNavbar"></app-navbar>
-<div >
+
+<div>
+  <app-breadcrumb></app-breadcrumb>
   <router-outlet></router-outlet>
+  <app-scroll-to-top></app-scroll-to-top>
+
 </div>
 <app-footer></app-footer>

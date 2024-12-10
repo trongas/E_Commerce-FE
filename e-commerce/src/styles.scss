@@ -104,3 +104,17 @@ img {
 img:hover {
   transform: scale(1.05);
 }
+
+.p-breadcrumb {
+  font-size: 12px;
+  padding: 0.75rem;
+  padding-left: 3.8rem;
+}
+
+.p-breadcrumb .p-menuitem-link {
+  color: #1d4ed8; /* Tailwind blue-600 */
+}
+
+.p-breadcrumb .p-menuitem-link:hover {
+  color: #1e40af; /* Tailwind blue-700 */
+}

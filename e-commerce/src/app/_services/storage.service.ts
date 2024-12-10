@@ -37,13 +37,9 @@ export class StorageService {
     // or window.localStorage.setItem(TOKEN_KEY, token); for persistence
   }
   getToken() {
-    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtCookieName='));
-    if (jwtCookie) {
-      const token = jwtCookie.split('=')[1];
+      const token = localStorage.getItem('token');
       console.log('Token from JWT cookie:', token);
       return token;
-    }
-    return null;
   }
   
 
@@ -53,18 +49,18 @@ export class StorageService {
     // or window.localStorage.removeItem(TOKEN_KEY); for persistence
   }
 
-  // Check if the JWT token is valid (not expired)
-  public isTokenValid(): boolean {
-    const token = this.getToken();
-    if (token) {
-      const payload = this.decodeJwt(token);
-      if (payload) {
-        const currentTime = Math.floor(new Date().getTime() / 1000); // Current time in seconds
-        return payload.exp > currentTime; // Check if token is still valid
-      }
-    }
-    return false;
-  }
+  // // Check if the JWT token is valid (not expired)
+  // public isTokenValid(): boolean {
+  //   const token = this.getToken();
+  //   if (token) {
+  //     const payload = this.decodeJwt(token);
+  //     if (payload) {
+  //       const currentTime = Math.floor(new Date().getTime() / 1000); // Current time in seconds
+  //       return payload.exp > currentTime; // Check if token is still valid
+  //     }
+  //   }
+  //   return false;
+  // }
 
   // Decode JWT token (without verifying signature)
   private decodeJwt(token: string): any {
